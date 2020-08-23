@@ -25,8 +25,8 @@ router.get('/:id/matches', async (req, res, next) => {
   return next();
 });
 
-router.get('/:id/wins', async (req, res, next) => {
-  const player = await queries.getWins(req.params.id);
+router.get('/:id/stats', async (req, res, next) => {
+  const player = await queries.getStats(req.params.id);
   if (player) {
     return res.json(player);
   }
