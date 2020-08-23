@@ -1,11 +1,11 @@
 ## Player
 
 - id: number [PK]
-- first_name: varchar(20)
-- last_name: varchar(20)
-- gender: char(1)
-- username: varchar2(50)
-- password: varchar2(50)
+- first_name: string
+- last_name: string
+- gender: string
+- username: string
+- password: string
 
 ## Match
 
@@ -14,6 +14,6 @@
 - player2: number [FK]
 - date_played: date
 - win: number
-- score: char(3)
-- total_points: char(6)
-- set_score: []
+- score: string
+- total_points: string
+- set_score: string[]
