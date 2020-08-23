@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+
+  "type": "object",
+  "title": "Player",
+  "description": "The Player",
+  "required": ["first_name", "last_name", "gender", "username", "password"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$id": "#/properties/id",
+      "type": "integer",
+      "title": "The ID"
+    },
+    "first_name": {
+      "$id": "#/properties/first_name",
+      "type": "string",
+      "title": "Players first name"
+    },
+    "last_name": {
+      "$id": "#/properties/last_name",
+      "type": "string",
+      "title": "Players last name"
+    },
+    "gender": {
+      "$id": "#/properties/gender",
+      "type": "string",
+      "title": "Players gender"
+    },
+    "username": {
+      "$id": "#/properties/username",
+      "type": "string",
+      "title": "Players username, must be unique"
+    },
+    "password": {
+      "$id": "#/properties/password",
+      "type": "string",
+      "title": "Players hashed password"
+    },
+    "created_at": {
+      "$id": "#/properties/created_at",
+      "type": "string",
+      "title": "Creation date of player"
+    },
+    "updated_at": {
+      "$id": "#/properties/updated_at",
+      "type": "string",
+      "title": "Last update of player"
+    }
+  }
+}

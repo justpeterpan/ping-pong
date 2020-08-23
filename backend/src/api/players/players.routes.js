@@ -1,11 +1,12 @@
 const express = require('express');
+const Player = require('./players.model');
 
 const queries = require('./players.queries');
 
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  const players = await queries.find();
+  const players = await Player.query().select('id', 'first_name', 'last_name', 'username').where('deleted_at', null);
   res.json(players);
 });
 

@@ -3,7 +3,7 @@ const tableNames = require('../../src/constants/tableNames');
 
 const addDefaultColumns = (table) => {
   table.timestamps(false, true);
-  table.datetime('deteled_at');
+  table.datetime('deleted_at');
 };
 
 /**

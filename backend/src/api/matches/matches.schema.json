@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+
+  "type": "object",
+  "title": "Match",
+  "description": "Match",
+  "required": ["player1", "player2", "date_played", "win", "score", "total_points", "set_score"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$id": "#/properties/id",
+      "type": "integer",
+      "title": "Match ID"
+    },
+    "player1": {
+      "$id": "#/properties/player1",
+      "type": "integer",
+      "title": "Id of player 1"
+    },
+    "player2": {
+      "$id": "#/properties/player2",
+      "type": "integer",
+      "title": "Id of player 2"
+    },
+    "date_played": {
+      "$id": "#/properties/date_played",
+      "type": "string",
+      "title": "Players gender"
+    },
+    "win": {
+      "$id": "#/properties/win",
+      "type": "integer",
+      "title": "Id of winner"
+    },
+    "score": {
+      "$id": "#/properties/score",
+      "type": "string",
+      "title": "Match score"
+    },
+    "total_points": {
+      "$id": "#/properties/total_points",
+      "type": "string",
+      "title": "Total points played"
+    },
+    "set_score": {
+      "$id": "#/properties/score",
+      "type": "array",
+      "title": "Match score"
+    },
+    "created_at": {
+      "$id": "#/properties/created_at",
+      "type": "string",
+      "title": "Creation date of match"
+    },
+    "updated_at": {
+      "$id": "#/properties/updated_at",
+      "type": "string",
+      "title": "Last update of match"
+    }
+  }
+}

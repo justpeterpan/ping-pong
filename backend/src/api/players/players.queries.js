@@ -7,8 +7,7 @@ module.exports = {
     return db(tableNames.player).select(fields);
   },
   async get(id) {
-    const [player] = await db(tableNames.player).select(fields).where({ id });
-    return player;
+    return db(tableNames.player).select(fields).where({ id }).first();
   },
 
   async getMatches(id) {
