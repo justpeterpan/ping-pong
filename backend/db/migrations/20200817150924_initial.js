@@ -25,7 +25,7 @@ exports.up = async (knex) => {
     table.integer('player1', 255).notNullable().references('id').inTable('player').onDelete('cascade');
     table.integer('player2', 255).notNullable().references('id').inTable('player').onDelete('cascade');
     table.dateTime('date_played').notNullable();
-    table.integer('win', 1).notNullable();
+    table.integer('win', 255).notNullable().references('id').inTable('player').onDelete('cascade');
     table.text('score', 3).notNullable();
     table.text('total_points', 6).notNullable();
     table.specificType('set_score', 'text[]').notNullable();
