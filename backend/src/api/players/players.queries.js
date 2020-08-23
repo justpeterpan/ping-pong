@@ -1,6 +1,5 @@
 const db = require('../../db');
 const tableNames = require('../../constants/tableNames');
-const { table } = require('../../db');
 
 const fields = ['id', 'first_name', 'last_name', 'gender', 'username'];
 module.exports = {
