@@ -1,11 +1,24 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "../views/Home.vue";
+import Table from "../components/Table.vue";
+import PlayerDetail from "../components/PlayerDetail.vue";
 
 const routes = [
   {
     path: "/",
     name: "Home",
     component: Home
+  },
+  {
+    path: "/table",
+    name: "Table",
+    component: Table
+  },
+  {
+    path: "/player/:id",
+    name: "player",
+    component: PlayerDetail,
+    props: true
   },
   {
     path: "/about",
