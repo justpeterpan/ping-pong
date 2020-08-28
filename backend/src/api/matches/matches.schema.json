@@ -32,6 +32,11 @@
       "type": "integer",
       "title": "Id of winner"
     },
+    "defeat": {
+      "$id": "#/properties/defeat",
+      "type": "integer",
+      "title": "Id of loser"
+    },
     "score": {
       "$id": "#/properties/score",
       "type": "string",

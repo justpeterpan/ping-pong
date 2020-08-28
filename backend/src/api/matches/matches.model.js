@@ -23,8 +23,8 @@ class Match extends Model {
         relation: Model.HasManyRelation,
         modelClass: Player,
         join: {
-          from: ['match.player1', 'match.player2', 'match.win'],
-          to: ['player.id', 'player.id', 'player.id'],
+          from: ['match.player1', 'match.player2', 'match.win', 'match.defeat'],
+          to: ['player.id', 'player.id', 'player.id', 'player.id'],
         },
       },
     };

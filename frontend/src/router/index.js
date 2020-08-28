@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import Table from "../components/Table.vue";
 import PlayerDetail from "../components/PlayerDetail.vue";
+import MatchDetail from "../components/MatchDetail.vue";
 
 const routes = [
   {
@@ -18,6 +19,12 @@ const routes = [
     path: "/player/:id",
     name: "player",
     component: PlayerDetail,
+    props: true
+  },
+  {
+    path: "/match/:id",
+    name: "match",
+    component: MatchDetail,
     props: true
   },
   {

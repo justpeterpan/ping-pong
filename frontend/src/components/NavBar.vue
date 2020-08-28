@@ -1,9 +1,7 @@
 <template>
   <div class="nav-bar">
-    <h2>PingPong</h2>
     <router-link to="/">home</router-link>
     <router-link to="/table">table</router-link>
-    <router-link to="/">stats</router-link>
   </div>
 </template>
 
@@ -11,11 +9,17 @@
 .nav-bar {
   display: flex;
   align-items: center;
-  background-color: antiquewhite;
+  background-color: #8bd78b;
 }
 
 .nav-bar a {
   margin: 10px;
+  color: white;
   text-decoration: none;
+}
+
+.nav-bar a:active {
+  background-color: white;
+  color: black;
 }
 </style>

@@ -24,17 +24,6 @@ router.get('/', async (req, res) => {
   res.json(match);
 });
 
-router.get('/stats', async (req, res) => {
-  const stats = await Match.query()
-    .select('match.win', 'player.username', 'player.id')
-    .join('player', 'match.win', 'player.id')
-    .count('match.win')
-    .groupBy('match.win', 'player.id')
-    .orderBy('player.id', 'desc');
-
-  res.json(stats);
-});
-
 router.get('/:id', async (req, res, next) => {
   const match = await Match.query().findById(req.params.id);
   if (match) {

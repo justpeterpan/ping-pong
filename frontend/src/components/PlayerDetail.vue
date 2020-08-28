@@ -1,22 +1,27 @@
 <template>
   <div class="container">
-    <div class="header">{{ player.first_name }} {{ player.last_name }}</div>
+    <h2>{{ player.first_name }} {{ player.last_name }}</h2>
     <div>
       <ul class="stats">
-        <li>matches: {{ stats.matches }}</li>
-        <li>wins: {{ stats.wins }}</li>
-        <li>defeats: {{ stats.defeats }}</li>
-        <li>points: {{ stats.points }}</li>
+        <li>🏓 matches: {{ stats.matches }}</li>
+        <li>🏅 wins: {{ stats.wins }}</li>
+        <li>😔 defeats: {{ stats.defeats }}</li>
+        <li>🎯 points: {{ stats.points }}</li>
       </ul>
     </div>
+    <MatchList :id="`${id}`" />
   </div>
 </template>
 
 <script>
 import { ref } from "vue";
+import MatchList from "./MatchList";
 
 export default {
   props: ["id"],
+  components: {
+    MatchList
+  },
   setup(props) {
     const player = ref([]);
     const stats = ref([]);
@@ -33,6 +38,7 @@ export default {
       const json = await response.json();
       stats.value = json;
     };
+    console.log(props);
 
     getPlayer(props.id);
     getPlayerStats(props.id);
