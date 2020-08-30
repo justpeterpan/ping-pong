@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h2>{{ player.first_name }} {{ player.last_name }}</h2>
+    <h2>{{ player.username }}</h2>
     <div>
       <ul class="stats">
         <li>🏓 matches: {{ stats.matches }}</li>

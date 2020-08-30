@@ -17,7 +17,7 @@
           <th scope="row">{{ index + 1 }}.</th>
           <td>
             <router-link
-              :to="{ name: 'player', params: { id: position.id } }"
+              :to="{ name: 'player', params: { id: position.username } }"
               >{{ position.username }}</router-link
             >
           </td>

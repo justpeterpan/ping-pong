@@ -1,3 +1,4 @@
+const { raw } = require('objection');
 const db = require('../../db');
 const tableNames = require('../../constants/tableNames');
 
@@ -6,22 +7,14 @@ module.exports = {
   find() {
     return db(tableNames.player).select(fields);
   },
-  async get(id) {
-    return db(tableNames.player).select(fields).where({ id }).first();
+  async get(username) {
+    return db(tableNames.player).select(fields).where({ username }).first();
   },
 
-  async getMatches(id) {
-    const match = await db(tableNames.match)
-      .select('id', 'player1', 'player2', 'score', 'set_score')
-      .where({ player1: id })
-      .orWhere({ player2: id });
-    return match;
-  },
-
-  async getStats(id) {
-    const [match] = await db(tableNames.match).count().where({ player1: id }).orWhere({ player2: id });
-    const [win] = await db(tableNames.match).count().where({ win: id });
-    const [defeat] = await db(tableNames.match).count().whereNot({ win: id });
+  async getStats(username) {
+    const [match] = await db(tableNames.match).count().where({ player1: username }).orWhere({ player2: username });
+    const [win] = await db(tableNames.match).count().where({ win: username });
+    const [defeat] = await db(tableNames.match).count().whereNot({ win: username });
     return {
       matches: Number(match.count),
       wins: Number(win.count),

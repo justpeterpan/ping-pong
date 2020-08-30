@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h2>Match</h2>
+    <h2>Match {{ match.player1 }} vs {{ match.player2 }}</h2>
     <div>
       <ul class="stats">
         <li>📅 Date: {{ match.date_played }}</li>

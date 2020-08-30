@@ -10,7 +10,7 @@ const addDefaultColumns = (table) => {
  * @param {Knex} knex
  */
 exports.up = async (knex) => {
-  await knex.schema.createTable(tableNames.player, (table) => {
+  await knex.schema.createTableIfNotExists(tableNames.player, (table) => {
     table.increments().notNullable();
     table.string('first_name', 50).notNullable();
     table.string('last_name').notNullable();
@@ -20,14 +20,17 @@ exports.up = async (knex) => {
     addDefaultColumns(table);
   });
 
-  await knex.schema.createTable(tableNames.match, (table) => {
+  await knex.schema.createTableIfNotExists(tableNames.match, (table) => {
     table.increments().notNullable();
-    table.integer('player1', 255).notNullable().references('id').inTable('player').onDelete('cascade');
-    table.integer('player2', 255).notNullable().references('id').inTable('player').onDelete('cascade');
+    table.string('player1', 50).notNullable().references('username').inTable('player').onDelete('cascade');
+    table.string('player2', 50).notNullable().references('username').inTable('player').onDelete('cascade');
     table.dateTime('date_played').notNullable();
-    table.integer('win', 255).notNullable().references('id').inTable('player').onDelete('cascade');
-    table.text('score', 3).notNullable();
-    table.text('total_points', 6).notNullable();
+    table.string('win', 50).notNullable().references('username').inTable('player').onDelete('cascade');
+    table.string('defeat', 50).notNullable().references('username').inTable('player').onDelete('cascade');
+    table.integer('player1_score', 1).notNullable();
+    table.integer('player2_score', 1).notNullable();
+    table.integer('player1_total_points', 3).notNullable();
+    table.integer('player2_total_points', 3).notNullable();
     table.specificType('set_score', 'text[]').notNullable();
     addDefaultColumns(table);
   });

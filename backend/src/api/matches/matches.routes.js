@@ -1,4 +1,5 @@
 const express = require('express');
+const { raw } = require('objection');
 const Match = require('./matches.model');
 
 const router = express.Router();
@@ -11,21 +12,35 @@ router.get('/', async (req, res) => {
    */
   const match = await Match.query()
     .select(
-      'p1.id as player1_id',
-      'p2.id as player2_id',
+      'player1',
+      'player2',
       'match.id as id',
-      'match.score',
-      'p1.username as player_1',
-      'p2.username as player_2'
+      'date_played',
+      'win',
+      'defeat',
+      raw(`?? || ':' || ??`, 'player1_score', 'player2_score').as('score'),
+      raw(`?? || ':' || ??`, 'player1_total_points', 'player2_total_points').as('total_points'),
+      'set_score'
     )
-    .join('player as p1', 'match.player1', 'p1.id')
-    .join('player as p2', 'match.player2', 'p2.id');
-
+    .where('deleted_at', null);
   res.json(match);
 });
 
 router.get('/:id', async (req, res, next) => {
-  const match = await Match.query().findById(req.params.id);
+  const match = await Match.query()
+    .findById(req.params.id)
+    .select(
+      'player1',
+      'player2',
+      'match.id as id',
+      'date_played',
+      'win',
+      'defeat',
+      raw(`?? || ':' || ??`, 'player1_score', 'player2_score').as('score'),
+      raw(`?? || ':' || ??`, 'player1_total_points', 'player2_total_points').as('total_points'),
+      'set_score'
+    )
+    .where('deleted_at', null);
   if (match) {
     return res.json(match);
   }

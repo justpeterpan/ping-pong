@@ -13,7 +13,8 @@ exports.seed = async (knex) => {
     return knex(tableName).del();
   }, Promise.resolve());
 
-  const password = crypto.randomBytes(15).toString('hex');
+  // const password = crypto.randomBytes(15).toString('hex');
+  const password = 'qwer1234';
 
   const player1 = {
     first_name: 'player',
@@ -32,24 +33,28 @@ exports.seed = async (knex) => {
   };
 
   const match1 = {
-    player1: 1,
-    player2: 2,
+    player1: 'playerone',
+    player2: 'playertwo',
     date_played: new Date().toISOString(),
-    win: 1,
-    defeat: 2,
-    score: '3:1',
-    total_points: '34:14',
+    win: 'playerone',
+    defeat: 'playertwo',
+    player1_score: 3,
+    player2_score: 1,
+    player1_total_points: 34,
+    player2_total_points: 14,
     set_score: ['11:1', '11:1', '1:11', '11:1'],
   };
 
   const match2 = {
-    player1: 1,
-    player2: 2,
+    player1: 'playerone',
+    player2: 'playertwo',
     date_played: new Date().toISOString(),
-    win: 2,
-    defeat: 1,
-    score: '2:3',
-    total_points: '27:43',
+    win: 'playertwo',
+    defeat: 'playerone',
+    player1_score: 2,
+    player2_score: 3,
+    player1_total_points: 27,
+    player2_total_points: 43,
     set_score: ['1:11', '4:11', '11:9', '11:1', '0:11'],
   };
 

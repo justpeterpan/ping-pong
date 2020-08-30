@@ -4,7 +4,17 @@
   "type": "object",
   "title": "Match",
   "description": "Match",
-  "required": ["player1", "player2", "date_played", "win", "score", "total_points", "set_score"],
+  "required": [
+    "player1",
+    "player2",
+    "date_played",
+    "win",
+    "player1_score",
+    "player2_score",
+    "player1_total_points",
+    "player2_total_points",
+    "set_score"
+  ],
   "additionalProperties": false,
   "properties": {
     "id": {
@@ -14,13 +24,13 @@
     },
     "player1": {
       "$id": "#/properties/player1",
-      "type": "integer",
-      "title": "Id of player 1"
+      "type": "string",
+      "title": "Username of player 1"
     },
     "player2": {
       "$id": "#/properties/player2",
-      "type": "integer",
-      "title": "Id of player 2"
+      "type": "string",
+      "title": "Username of player 2"
     },
     "date_played": {
       "$id": "#/properties/date_played",
@@ -29,22 +39,32 @@
     },
     "win": {
       "$id": "#/properties/win",
-      "type": "integer",
-      "title": "Id of winner"
+      "type": "string",
+      "title": "Username of winner"
     },
     "defeat": {
       "$id": "#/properties/defeat",
-      "type": "integer",
-      "title": "Id of loser"
-    },
-    "score": {
-      "$id": "#/properties/score",
       "type": "string",
+      "title": "Username of loser"
+    },
+    "player1_score": {
+      "$id": "#/properties/player1_score",
+      "type": "integer",
       "title": "Match score"
     },
-    "total_points": {
-      "$id": "#/properties/total_points",
-      "type": "string",
+    "player2_score": {
+      "$id": "#/properties/player2_score",
+      "type": "integer",
+      "title": "Match score"
+    },
+    "player1_total_points": {
+      "$id": "#/properties/player1_total_points",
+      "type": "integer",
+      "title": "Total points played"
+    },
+    "player2_total_points": {
+      "$id": "#/properties/player2_total_points",
+      "type": "integer",
       "title": "Total points played"
     },
     "set_score": {

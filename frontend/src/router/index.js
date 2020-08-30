@@ -3,6 +3,7 @@ import Home from "../views/Home.vue";
 import Table from "../components/Table.vue";
 import PlayerDetail from "../components/PlayerDetail.vue";
 import MatchDetail from "../components/MatchDetail.vue";
+import Signin from "../components/Signin.vue";
 
 const routes = [
   {
@@ -20,6 +21,11 @@ const routes = [
     name: "player",
     component: PlayerDetail,
     props: true
+  },
+  {
+    path: "/signin",
+    name: "signin",
+    component: Signin
   },
   {
     path: "/match/:id",

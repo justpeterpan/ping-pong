@@ -24,7 +24,7 @@ class Match extends Model {
         modelClass: Player,
         join: {
           from: ['match.player1', 'match.player2', 'match.win', 'match.defeat'],
-          to: ['player.id', 'player.id', 'player.id', 'player.id'],
+          to: ['player.username', 'player.username', 'player.username', 'player.username'],
         },
       },
     };
