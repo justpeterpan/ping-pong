@@ -17,3 +17,15 @@
 - score: string
 - total_points: string
 - set_score: string[]
+
+## To do
+
+### Frontend
+
+[] create 'Add match' page
+[] check if response status is 401 -> player has to sign in again; otherwise player is already signed in
+
+### Backend
+
+[] remove 'token' property from player
+[] create seed with all players

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h2>Match {{ match.player1 }} vs {{ match.player2 }}</h2>
+    <h2>{{ match.player1 }} vs {{ match.player2 }}</h2>
     <div>
       <ul class="stats">
         <li>📅 Date: {{ match.date_played }}</li>
@@ -22,7 +22,9 @@ export default {
     const API_URL = "http://localhost:3001/api/v1/matches";
 
     const getMatchDetails = async id => {
-      const response = await fetch(`${API_URL}/${id}`);
+      const response = await fetch(`${API_URL}/${id}`, {
+        credentials: "include"
+      });
       const json = await response.json();
       match.value = json;
     };

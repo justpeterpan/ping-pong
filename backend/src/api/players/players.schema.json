@@ -4,7 +4,7 @@
   "type": "object",
   "title": "Player",
   "description": "The Player",
-  "required": ["first_name", "last_name", "gender", "username", "password"],
+  "required": ["first_name", "last_name", "gender", "username", "password", "token"],
   "additionalProperties": false,
   "properties": {
     "id": {
@@ -36,6 +36,11 @@
       "$id": "#/properties/password",
       "type": "string",
       "title": "Players hashed password"
+    },
+    "token": {
+      "$id": "#/properties/token",
+      "type": "string",
+      "title": "Players session token"
     },
     "created_at": {
       "$id": "#/properties/created_at",

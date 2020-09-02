@@ -1,10 +1,10 @@
 const express = require('express');
 
+const authMiddleware = require('./auth/middleware');
+const auth = require('./auth/auth.routes');
 const players = require('./players/players.routes');
 const matches = require('./matches/matches.routes');
-const auth = require('./auth/auth.routes');
 const project = require('../constants/project');
-// const auth = require('./auth/auth.routes');
 
 const router = express.Router();
 
@@ -13,8 +13,8 @@ router.get('/', (req, res) => {
     message: project.message,
   });
 });
-router.use('/players', players);
-router.use('/matches', matches);
 router.use('/auth', auth);
+router.use('/players', authMiddleware.ensureLoggedIn, players);
+router.use('/matches', authMiddleware.ensureLoggedIn, matches);
 
 module.exports = router;

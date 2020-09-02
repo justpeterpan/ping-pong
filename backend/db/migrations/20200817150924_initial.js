@@ -17,6 +17,7 @@ exports.up = async (knex) => {
     table.string('gender', 1).notNullable();
     table.string('username', 100).notNullable().unique();
     table.string('password', 127).notNullable();
+    table.string('token', 255);
     addDefaultColumns(table);
   });
 

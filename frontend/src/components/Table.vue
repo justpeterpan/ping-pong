@@ -16,10 +16,9 @@
         <tr>
           <th scope="row">{{ index + 1 }}.</th>
           <td>
-            <router-link
-              :to="{ name: 'player', params: { id: position.username } }"
-              >{{ position.username }}</router-link
-            >
+            <router-link :to="{ name: 'player', params: { id: position.username } }">{{
+              position.username
+            }}</router-link>
           </td>
           <td>{{ +position.win + +position.defeat }}</td>
           <td>{{ position.win }}</td>
@@ -32,25 +31,34 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref } from 'vue';
+import { useStore } from 'vuex';
 
 export default {
   setup() {
     const table = ref([]);
-    const API_URL = "http://localhost:3001/api/v1/players/table";
+    const API_URL = 'http://localhost:3001/api/v1/players/table';
+    const { _actions } = useStore();
 
     async function getMatches() {
-      const response = await fetch(API_URL);
-      const json = await response.json();
-      table.value = json;
+      try {
+        const response = await fetch(API_URL, { credentials: 'include' });
+        if (response.statusText === 'Unauthorized' && response.status === 401) {
+          _actions.setPlayerState[0]('');
+        }
+        const json = await response.json();
+        table.value = json;
+      } catch (e) {
+        error => console.log(error);
+      }
     }
 
     getMatches();
 
     return {
-      table
+      table,
     };
-  }
+  },
 };
 </script>
 
@@ -85,5 +93,10 @@ tbody tr th {
 
 td {
   text-align: right;
+}
+
+td a {
+  text-decoration: underline;
+  text-decoration-style: dotted;
 }
 </style>

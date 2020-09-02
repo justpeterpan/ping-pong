@@ -12,17 +12,19 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref } from 'vue';
 
 export default {
-  props: ["id"],
+  props: ['id'],
 
   setup(props) {
     const matches = ref([]);
-    const API_URL = "http://localhost:3001/api/v1/players";
+    const API_URL = 'http://localhost:3001/api/v1/players';
 
     const getPlayerMatches = async id => {
-      const response = await fetch(`${API_URL}/${id}/matches`);
+      const response = await fetch(`${API_URL}/${id}/matches`, {
+        credentials: 'include',
+      });
       const json = await response.json();
       matches.value = json;
     };
@@ -30,9 +32,9 @@ export default {
     getPlayerMatches(props.id);
 
     return {
-      matches
+      matches,
     };
-  }
+  },
 };
 </script>
 

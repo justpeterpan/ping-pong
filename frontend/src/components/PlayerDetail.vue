@@ -14,40 +14,47 @@
 </template>
 
 <script>
-import { ref } from "vue";
-import MatchList from "./MatchList";
+import { ref } from 'vue';
+import MatchList from './MatchList';
 
 export default {
-  props: ["id"],
+  props: ['id'],
   components: {
-    MatchList
+    MatchList,
   },
   setup(props) {
     const player = ref([]);
     const stats = ref([]);
-    const API_URL = "http://localhost:3001/api/v1/players";
+    const API_URL = 'http://localhost:3001/api/v1/players';
 
     const getPlayer = async id => {
-      const response = await fetch(`${API_URL}/${id}`);
-      const json = await response.json();
-      player.value = json;
+      try {
+        const response = await fetch(`${API_URL}/${id}`, {
+          credentials: 'include',
+        });
+        const json = await response.json();
+        player.value = json;
+      } catch (e) {
+        error => console.log(error);
+      }
     };
 
     const getPlayerStats = async id => {
-      const response = await fetch(`${API_URL}/${id}/stats`);
+      const response = await fetch(`${API_URL}/${id}/stats`, {
+        credentials: 'include',
+      });
       const json = await response.json();
       stats.value = json;
     };
-    console.log(props);
 
     getPlayer(props.id);
     getPlayerStats(props.id);
 
     return {
       player,
-      stats
+      stats,
     };
-  }
+  },
 };
 </script>
 

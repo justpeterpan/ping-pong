@@ -1,6 +1,5 @@
 const Knex = require('knex');
 const bcrypt = require('bcrypt');
-const crypto = require('crypto');
 
 const tableNames = require('../../src/constants/tableNames');
 
@@ -22,6 +21,7 @@ exports.seed = async (knex) => {
     gender: 'm',
     username: 'playerone',
     password: await bcrypt.hash(password, 12),
+    token: 123,
   };
 
   const player2 = {
@@ -30,6 +30,7 @@ exports.seed = async (knex) => {
     gender: 'm',
     username: 'playertwo',
     password: await bcrypt.hash(password, 12),
+    token: 231,
   };
 
   const match1 = {

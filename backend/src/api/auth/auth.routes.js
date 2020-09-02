@@ -1,8 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 
-const jwt = require('../../lib/jwt');
-
 const Player = require('../players/players.model');
 
 const router = express.Router();
@@ -30,15 +28,24 @@ router.post('/signin', async (req, res, next) => {
       id: player.id,
       username: player.username,
     };
-    const token = await jwt.sign(payload);
-
+    res.cookie('name', username, {
+      httpOnly: true,
+      sameSite: true,
+      secure: false,
+      signed: true,
+      maxAge: 1000 * 60 * 60 * 24 * 7 /* expire a week from today */,
+    });
     res.json({
       player: payload,
-      token,
     });
   } catch (error) {
     next(error);
   }
+});
+
+router.get('/signout', async (req, res) => {
+  res.clearCookie('name', { httpOnly: true, sameSite: true, secure: false, signed: true });
+  res.json('Cookie cleared');
 });
 
 module.exports = router;
