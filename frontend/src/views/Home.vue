@@ -1,5 +1,8 @@
 <template>
-  <div class="home"></div>
+  <div class="container">
+    <h2>Welcome</h2>
+    <p>Go to table-view, player-view or add a match.</p>
+  </div>
 </template>
 
 <script>

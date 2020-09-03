@@ -9,7 +9,7 @@ const Match = require('../matches/matches.model');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  const players = await Player.query().select();
+  const players = await Player.query().select('id', 'username', 'first_name', 'last_name');
   res.json(players);
 });
 

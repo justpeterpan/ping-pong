@@ -12,18 +12,18 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref } from 'vue';
 
 export default {
-  props: ["id"],
+  props: ['id'],
 
   setup(props) {
     const match = ref([]);
-    const API_URL = "http://localhost:3001/api/v1/matches";
+    const API_URL = 'http://localhost:3001/api/v1/matches';
 
     const getMatchDetails = async id => {
       const response = await fetch(`${API_URL}/${id}`, {
-        credentials: "include"
+        credentials: 'include',
       });
       const json = await response.json();
       match.value = json;
@@ -32,9 +32,9 @@ export default {
     getMatchDetails(props.id);
 
     return {
-      match
+      match,
     };
-  }
+  },
 };
 </script>
 

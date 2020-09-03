@@ -20,6 +20,7 @@ export default {
       store: this.$store.state,
     };
   },
+
   methods: {
     ...mapActions(['setPlayerState']),
     async loginSubmit() {

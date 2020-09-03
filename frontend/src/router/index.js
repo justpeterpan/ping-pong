@@ -5,6 +5,7 @@ import PlayerDetail from '../components/PlayerDetail.vue';
 import MatchDetail from '../components/MatchDetail.vue';
 import Signin from '../components/Signin.vue';
 import store from '../store/index';
+import MatchForm from '@/components/MatchForm';
 
 const routes = [
   {
@@ -27,6 +28,11 @@ const routes = [
     path: '/signin',
     name: 'signin',
     component: Signin,
+  },
+  {
+    path: '/match/form',
+    name: 'matchform',
+    component: MatchForm,
   },
   {
     path: '/match/:id',
