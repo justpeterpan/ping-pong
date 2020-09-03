@@ -4,9 +4,9 @@
     <form action="" class="form-container">
       <span class="selectp1">{{ player.username }}</span>
       <div class="player1">
-        <input type="number" class="left-side" tabindex="1" />
-        <input type="number" class="left-side" tabindex="3" />
-        <input type="number" class="left-side" tabindex="5" />
+        <input type="number" class="left-side" placeholder="0" tabindex="1" />
+        <input type="number" class="left-side" placeholder="0" tabindex="3" />
+        <input type="number" class="left-side" placeholder="0" tabindex="5" />
       </div>
       <span class="selectvs">vs</span>
       <div class="vs">
@@ -18,9 +18,9 @@
         <option v-for="player in playerList" v-bind:value="player" v-bind:key="player">{{ player }}</option>
       </select>
       <div class="player2">
-        <input type="number" tabindex="2" />
-        <input type="number" tabindex="4" />
-        <input type="number" tabindex="6" />
+        <input type="number" placeholder="0" tabindex="2" />
+        <input type="number" placeholder="0" tabindex="4" />
+        <input type="number" placeholder="0" tabindex="6" />
       </div>
       <button class="save-button">save</button>
     </form>
