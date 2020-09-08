@@ -15,4 +15,4 @@
 
 ## 📝 > TODO
 
-[] Dockerize backend & frontend
+- [ ] Dockerize backend & frontend
