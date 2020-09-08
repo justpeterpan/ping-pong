@@ -15,6 +15,10 @@ router.get('/', (req, res) => {
 });
 router.use('/auth', auth);
 router.use('/players', authMiddleware.ensureLoggedIn, players);
-router.use('/matches', authMiddleware.ensureLoggedIn, matches);
+router.use(
+  '/matches',
+  // authMiddleware.ensureLoggedIn,
+  matches
+);
 
 module.exports = router;

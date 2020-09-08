@@ -12,6 +12,7 @@ export default createStore({
       username: '',
       token: '',
     },
+    opponent: '',
     playerList: [],
   },
   getters: {
@@ -33,6 +34,9 @@ export default createStore({
     clearPlayers(state) {
       state.playerList = [];
     },
+    setOpponent(state, opponent) {
+      state.opponent = opponent;
+    },
   },
   actions: {
     setPlayerState({ commit }, username) {
@@ -44,9 +48,11 @@ export default createStore({
       const players = data.filter(player => player.username != username);
       await commit('clearPlayers');
       await players.forEach(player => {
-        console.log(player);
         commit('setPlayers', player.username);
       });
+    },
+    setOpponent({ commit }, opponent) {
+      commit('setOpponent', opponent);
     },
   },
   modules: {},

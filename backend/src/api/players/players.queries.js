@@ -1,4 +1,3 @@
-const { raw } = require('objection');
 const db = require('../../db');
 const tableNames = require('../../constants/tableNames');
 

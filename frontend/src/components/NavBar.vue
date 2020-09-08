@@ -7,6 +7,7 @@
       v-model="store.player.username"
       >{{ store.player.username }}</router-link
     >
+    <router-link to="/match/form" v-if="store.player.isLoggedIn"><strong>add Match</strong></router-link>
     <router-link to="/signin" v-if="!store.player.isLoggedIn">sign in</router-link>
     <router-link to="/signin" v-if="store.player.isLoggedIn" v-on:click="signout()">sign out</router-link>
   </div>

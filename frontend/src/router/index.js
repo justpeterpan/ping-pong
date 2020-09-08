@@ -58,7 +58,6 @@ const router = createRouter({
 const waitForStorageTobeReady = async (to, from, next) => {
   await store.restored;
   const { state } = store;
-  console.log(state.player.isLoggedIn);
 
   if (!state.player.isLoggedIn && to.path !== '/signin') next('/signin');
   else next();
