@@ -5,16 +5,14 @@ services:
     image: postgres
     container_name: pp-db
     restart: unless-stopped
-    volumes:
-      - ./backend/docker-data/db-data:/var/lib/postgresql/data
+    # volumes:
+    #   - ./backend/docker-data/db-data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - 5432:5432
-    # networks:
-    #   - internal-network
 
   adminer:
     depends_on: [db]
@@ -24,47 +22,37 @@ services:
     ports:
       - 8090:8080
 
-#   api:
-#     container_name: pp-api
-#     build:
-#       context: ./backend/
-#       dockerfile: Dockerfile
-#     restart: always
-#     env_file:
-#       - "./backend/.env"
-#     volumes:
-#       - ./backend/:/app/api:ro
-#     depends_on:
-#       - db
-#     networks:
-#       - internal-network
-#     ports:
-#       - 3001:3001
-#     expose:
-#       - 3001
+  api:
+    container_name: pp-api
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    restart: always
+    env_file:
+      - "./backend/.env"
+    volumes:
+      - /app/node_modules
+      - ./backend:/app/
+    depends_on:
+      - db
+    ports:
+      - 3001:3001
 
-#   frontend:
-#     container_name: pp-frontend
-#     build:
-#       context: ./frontend/
-#       dockerfile: Dockerfile
-#     restart: unless-stopped
-#     volumes:
-#       - ./frontend:/app/frontend
-#     environment:
-#       SHELL: "/bin/sh"
-#     depends_on:
-#       - api
-#     networks:
-#       - internal-network
-#     ports:
-#       - 8080:8080
-#     expose:
-#       - 8080
+  frontend:
+    container_name: pp-frontend
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    volumes:
+      - /app/frontend/node_modules
+      - ./frontend:/app/frontend
+    environment:
+      SHELL: "/bin/sh"
+    depends_on:
+      - api
 
-# networks:
-#   internal-network:
+    ports:
+      - 8080:8080
 
-# volumes:
-#   docker-data:
-#     driver: local
+

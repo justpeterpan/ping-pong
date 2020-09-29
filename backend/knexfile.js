@@ -7,6 +7,7 @@ module.exports = {
       database: 'pingpong',
       user: 'admin',
       password: 'qwer1234',
+      host: 'pp-db',
     },
     migrations: {
       directory: './db/migrations',

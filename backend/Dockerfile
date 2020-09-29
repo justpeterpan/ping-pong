@@ -1,13 +1,11 @@
 FROM node:14.9.0-alpine3.12
 
-RUN mkdir -p /app/api/
-WORKDIR /app/api/
+WORKDIR /app
 
 COPY ./package.json .
-COPY ./package-lock.json .
 
 RUN npm install
 
-COPY . /app/api/
+COPY . ./
 
-CMD npm start
+CMD ["npm", "run", "start"]
