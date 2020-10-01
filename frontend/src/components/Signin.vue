@@ -24,7 +24,7 @@ export default {
   methods: {
     ...mapActions(['setPlayerState']),
     async loginSubmit() {
-      const response = await fetch('http://localhost:3001/api/v1/auth/signin', {
+      const response = await fetch(`${process.env.VUE_APP_API_URL}/api/v1/auth/signin`, {
         credentials: 'include',
         method: 'POST',
         headers: {
@@ -39,7 +39,7 @@ export default {
       });
       const data = await response.json();
       await this.setPlayerState(data.player.username);
-      const redirectUrl = (window.location.href = `http://localhost:8080/#/player/${data.player.username}/`);
+      const redirectUrl = (window.location.href = `${process.env.VUE_APP_URL}/#/player/${data.player.username}/`);
       return redirectUrl;
     },
   },

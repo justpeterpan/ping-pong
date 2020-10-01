@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
 app.use(
   cors({
-    origin: 'http://localhost:8080',
+    origin: process.env.VUE_APP_URL,
     credentials: true,
   })
 );

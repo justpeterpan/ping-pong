@@ -51,8 +51,5 @@ services:
       SHELL: "/bin/sh"
     depends_on:
       - api
-
     ports:
       - 8080:8080
-
-

@@ -25,7 +25,7 @@ export default {
   methods: {
     ...mapActions(['setPlayerState']),
     async signout() {
-      await fetch('http://localhost:3001/api/v1/auth/signout', {
+      await fetch(`{process.env.VUE_APP_API_URL}/api/v1/auth/signout`, {
         credentials: 'include',
         method: 'GET',
         headers: {

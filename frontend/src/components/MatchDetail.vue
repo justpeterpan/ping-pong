@@ -19,7 +19,7 @@ export default {
 
   setup(props) {
     const match = ref([]);
-    const API_URL = 'http://localhost:3001/api/v1/matches';
+    const API_URL = `${process.env.VUE_APP_API_URL}/api/v1/matches`;
 
     const getMatchDetails = async id => {
       const response = await fetch(`${API_URL}/${id}`, {

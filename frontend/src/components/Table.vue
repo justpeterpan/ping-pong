@@ -37,7 +37,7 @@ import { useStore } from 'vuex';
 export default {
   setup() {
     const table = ref([]);
-    const API_URL = 'http://localhost:3001/api/v1/players/table';
+    const API_URL = `${process.env.VUE_APP_API_URL}/api/v1/players/table`;
     const { _actions } = useStore();
 
     async function getMatches() {

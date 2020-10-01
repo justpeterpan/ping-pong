@@ -25,7 +25,7 @@ export default {
   setup(props) {
     const player = ref([]);
     const stats = ref([]);
-    const API_URL = 'http://localhost:3001/api/v1/players';
+    const API_URL = `${process.env.VUE_APP_API_URL}/api/v1/players`;
 
     const getPlayer = async id => {
       try {

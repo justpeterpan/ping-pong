@@ -99,10 +99,10 @@ export default {
         date_played: new Date(),
         win: store.state.player.username,
         defeat: '',
-        player1_score: '',
-        player2_score: '',
-        player1_total_points: '',
-        player2_total_points: '',
+        player1_score: 0,
+        player2_score: 0,
+        player1_total_points: 0,
+        player2_total_points: 0,
         set_score: [],
       },
       set: {
@@ -137,9 +137,9 @@ export default {
           `${this.set.player1_set3_points}:${this.set.player2_set3_points}`,
         ];
         this.match.player1_total_points =
-          this.set.player1_set1_points + this.set.player1_set2_points + this.set.player1_set3_points;
+          +this.set.player1_set1_points + +this.set.player1_set2_points + +this.set.player1_set3_points;
         this.match.player2_total_points =
-          this.set.player2_set1_points + this.set.player2_set2_points + this.set.player2_set3_points;
+          +this.set.player2_set1_points + +this.set.player2_set2_points + +this.set.player2_set3_points;
         this.win === this.player.username
           ? ((this.match.player1_score = 3), (this.match.player2_score = 0))
           : ((this.match.player1_score = 0), (this.match.player2_score = 3));
@@ -151,15 +151,15 @@ export default {
           `${this.set.player1_set4_points}:${this.set.player2_set4_points}`,
         ];
         this.match.player1_total_points =
-          this.set.player1_set1_points +
-          this.set.player1_set2_points +
-          this.set.player1_set3_points +
-          this.set.player1_set4_points;
+          +this.set.player1_set1_points +
+          +this.set.player1_set2_points +
+          +this.set.player1_set3_points +
+          +this.set.player1_set4_points;
         this.match.player2_total_points =
-          this.set.player2_set1_points +
-          this.set.player2_set2_points +
-          this.set.player2_set3_points +
-          this.set.player2_set4_points;
+          +this.set.player2_set1_points +
+          +this.set.player2_set2_points +
+          +this.set.player2_set3_points +
+          +this.set.player2_set4_points;
         this.win === this.player.username
           ? ((this.match.player1_score = 3), (this.match.player2_score = 1))
           : ((this.match.player1_score = 1), (this.match.player2_score = 3));
@@ -172,28 +172,32 @@ export default {
           `${this.set.player1_set5_points}:${this.set.player2_set5_points}`,
         ];
         this.match.player1_total_points =
-          this.set.player1_set1_points +
-          this.set.player1_set2_points +
-          this.set.player1_set3_points +
-          this.set.player1_set4_points +
-          this.set.player1_set5_points;
+          +this.set.player1_set1_points +
+          +this.set.player1_set2_points +
+          +this.set.player1_set3_points +
+          +this.set.player1_set4_points +
+          +this.set.player1_set5_points;
         this.match.player2_total_points =
-          this.set.player2_set1_points +
-          this.set.player2_set2_points +
-          this.set.player2_set3_points +
-          this.set.player2_set4_points +
-          this.set.player2_set5_points;
+          +this.set.player2_set1_points +
+          +this.set.player2_set2_points +
+          +this.set.player2_set3_points +
+          +this.set.player2_set4_points +
+          +this.set.player2_set5_points;
         this.win === this.player.username
           ? ((this.match.player1_score = 3), (this.match.player2_score = 2))
           : ((this.match.player1_score = 2), (this.match.player2_score = 3));
       }
       this.match.player1 = this.player.username;
-      this.match.player2 = this.opponent;
+      this.match.player2 = this.opponent !== '' ? this.opponent : this.playerList[0];
       this.match.win;
-      this.match.defeat = this.match.win === this.player.username ? this.opponent : this.player.username;
+      if (this.match.win !== this.player.username) {
+        this.match.defeat = this.player.username;
+      } else {
+        this.match.defeat = this.opponent !== '' ? this.opponent : this.playerList[0];
+      }
 
-      console.log(this.match);
-      const response = await fetch('http://localhost:3001/api/v1/matches/', {
+      console.log(this.match, this.opponent, this.playerList);
+      const response = await fetch(`${process.env.VUE_APP_API_URL}/api/v1/matches/`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -206,7 +210,7 @@ export default {
 
       const data = await response.json();
       console.log(data);
-      const redirectUrl = (window.location.href = 'http://localhost:8080/#/table');
+      const redirectUrl = (window.location.href = `${process.env.VUE_APP_URL}/#/table`);
       return redirectUrl;
     },
     completeSetScore() {
@@ -253,6 +257,7 @@ export default {
   },
   created() {
     this.getPlayers(this.player.username);
+    this.setOpponent(this.playerList[0]);
   },
 };
 </script>
@@ -343,9 +348,8 @@ h2 {
   grid-area: save;
   display: grid;
   justify-self: center;
-  position: fixed;
+  padding-top: 20px;
   width: 80%;
-  bottom: 60px;
 }
 
 .form-container input[type='number'] {
