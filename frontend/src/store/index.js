@@ -43,7 +43,10 @@ export default createStore({
       commit('setPlayerState', username);
     },
     async getPlayers({ commit }, username) {
-      const response = await fetch('http://localhost:3001/api/v1/players/', { method: 'GET', credentials: 'include' });
+      const response = await fetch(`${process.env.VUE_APP_API_URL}/api/v1/players/`, {
+        method: 'GET',
+        credentials: 'include',
+      });
       const data = await response.json();
       const players = data.filter(player => player.username != username);
       await commit('clearPlayers');
